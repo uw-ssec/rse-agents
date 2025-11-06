@@ -37,7 +37,8 @@ Agents are located in the `.github/agents/` directory. Each agent is a specializ
 rse-agents/
 ├── .github/
 │   └── agents/          # Agent configuration files
-│       └── README.md    # Agent development guide
+│       ├── README.md    # Agent development guide
+│       └── TEMPLATE.md  # Template for creating new agents
 ├── LICENSE              # BSD 3-Clause License
 ├── README.md            # This file
 └── CONTRIBUTING.md      # Guidelines for contributing agents
