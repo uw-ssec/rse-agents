@@ -6,11 +6,11 @@ Comprehensive agents and skills for modern Scientific Python development followi
 
 This plugin provides expert guidance for scientific Python development, emphasizing reproducibility, modern tooling, and community standards from the [Scientific Python Development Guide](https://learn.scientific-python.org/development/).
 
-**Version:** 0.1.0
+**Version:** 0.2.0
 
 **Contents:**
 - 1 Agent (Scientific Python Expert)
-- 3 Skills (pixi, packaging, testing)
+- 4 Skills (pixi, packaging, testing, code-quality-tools)
 
 ## Available Agents
 
@@ -44,6 +44,31 @@ This plugin provides expert guidance for scientific Python development, emphasiz
 - Comprehensive error handling and validation
 
 ## Available Skills
+
+### Code Quality Tools
+
+**File:** [skills/code-quality-tools/SKILL.md](skills/code-quality-tools/SKILL.md)
+
+**Description:** Master automated code quality tools for scientific Python including ruff (fast linting and formatting), mypy (static type checking), and pre-commit hooks for automated quality gates.
+
+**Key topics:**
+- Ruff for ultra-fast linting and formatting (replaces flake8, black, isort)
+- MyPy for static type checking and catching bugs before runtime
+- Pre-commit hooks for automated quality enforcement
+- NumPy-specific linting rules
+- Type hints for scientific code
+- CI/CD integration
+- Migration from legacy tools
+
+**When to use:**
+- Setting up code quality standards for new projects
+- Enforcing consistent style across team contributions
+- Catching bugs early through static type checking
+- Automating code reviews
+- Preparing code for publication or distribution
+- Migrating from black/flake8/isort to modern tooling
+
+**Includes:** Quick reference card, decision trees, 10 detailed patterns, best practices checklist, migration guides, real-world examples
 
 ### Pixi Package Manager
 
