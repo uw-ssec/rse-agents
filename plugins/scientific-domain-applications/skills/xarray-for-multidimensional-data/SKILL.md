@@ -8,6 +8,7 @@ description: Labeled multidimensional arrays for scientific data analysis with X
 Master **Xarray**, the powerful library for working with labeled multidimensional arrays in scientific Python. Learn how to efficiently handle complex datasets with multiple dimensions, coordinates, and metadata - from climate data and satellite imagery to experimental measurements and simulations.
 
 **Official Documentation**: https://docs.xarray.dev/
+
 **GitHub**: https://github.com/pydata/xarray
 
 ## Quick Reference Card
