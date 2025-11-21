@@ -6,11 +6,60 @@ Domain-specific scientific computing skills for geospatial analysis, astronomy, 
 
 This plugin provides expert guidance for domain-specific scientific computing applications, covering specialized libraries and tools used across various scientific disciplines.
 
-**Version:** 0.1.0
+**Version:** 0.2.0
 
 **Contents:**
-- 0 Agents (coming soon)
+- 1 Agent (Astronomy & Astrophysics Expert)
 - 4 Skills (xarray, geospatial, astropy, holoviz)
+
+## Available Agents
+
+### Astronomy & Astrophysics Expert
+
+**File:** [agents/astronomy-astrophysics-expert.md](agents/astronomy-astrophysics-expert.md)
+
+**Description:** Expert astronomer and astrophysicist for observational data analysis, theoretical calculations, and astronomical research. Comprehensive knowledge spanning Solar System to cosmology with practical expertise in modern astronomical computing.
+
+**Capabilities:**
+- **Astronomical Data Analysis**: FITS files, photometry (Photutils), spectroscopy (Specutils), astrometry
+- **Coordinate Systems**: Transformations between ICRS, FK5, Galactic, AltAz with proper epochs and reference frames
+- **Time-Domain Astronomy**: Light curves, period finding (Lomb-Scargle), variability analysis, transient detection
+- **Observational Planning**: Target visibility, airmass calculations, moon avoidance, scheduling constraints
+- **Physical Calculations**: Stellar parameters, cosmological distances, blackbody spectra, orbital mechanics
+- **Multi-wavelength Analysis**: SED fitting, cross-wavelength correlations, photometric systems
+- **Archive Access**: Virtual Observatory, MAST, ESO, IRSA, HEASARC queries
+- **Modern Tools**: AstroPy ecosystem, astroquery, reproject, WCS handling
+
+**When to use:**
+- Processing telescope observations (imaging, spectroscopy, time-series)
+- Photometric and spectroscopic data reduction and calibration
+- Coordinate transformations and astrometric analysis
+- Exoplanet detection and characterization
+- Stellar, galactic, and extragalactic research
+- Time-domain astronomy and transient analysis
+- Cosmological calculations and distance measurements
+- Observatory planning and feasibility studies
+
+**Key features:**
+- **Physical Understanding**: Connects data to astrophysical interpretation
+- **Unit Safety**: All calculations use Astropy Quantity objects with explicit units
+- **Error Propagation**: Proper statistical treatment and uncertainty quantification
+- **Calibration Aware**: Applies observational corrections (extinction, airmass, instrument response)
+- **Reproducible**: Clear pipeline documentation from raw data to final results
+- **Current**: Knowledge of active missions (JWST, HST, Gaia, TESS) and surveys
+
+**Scientific Domains:**
+- Solar System science (planets, asteroids, comets)
+- Stellar astrophysics (classification, evolution, binaries, variables)
+- Exoplanet science (transits, radial velocity, characterization)
+- Galactic astronomy (Milky Way structure, clusters, ISM)
+- Extragalactic astronomy (galaxies, AGN, redshifts)
+- Cosmology (distance ladder, expansion, large-scale structure)
+- High-energy astrophysics (X-ray, gamma-ray, gravitational waves)
+
+**Status:** Active
+
+---
 
 ## Available Skills
 
@@ -214,14 +263,38 @@ cities_projected = cities.to_crs("EPSG:3857")
 buffer = cities_projected.buffer(10000)  # 10km buffer
 ```
 
-### Example 3: Interactive Visualization
+### Example 3: Astronomical Data Processing
+
+```python
+from astropy.io import fits
+from astropy.coordinates import SkyCoord
+from astropy import units as u
+from photutils.aperture import CircularAperture, aperture_photometry
+
+# Load FITS image
+with fits.open("observation.fits") as hdul:
+    data = hdul[0].data
+    header = hdul[0].header
+
+# Define target coordinates
+target = SkyCoord(ra=150.1*u.deg, dec=2.2*u.deg, frame='icrs')
+
+# Perform aperture photometry
+aperture = CircularAperture((target_x, target_y), r=5.0)
+phot_table = aperture_photometry(data, aperture)
+
+# Calculate instrumental magnitude
+mag_inst = -2.5 * np.log10(phot_table['aperture_sum'])
+```
+
+### Example 4: Interactive Visualization
 
 ```python
 import hvplot.pandas
 import panel as pn
 
 # Create interactive plot
-plot = df.hvplot.scatter(x="time", y="temperature", 
+plot = df.hvplot.scatter(x="time", y="temperature",
                          hover_cols=["location"])
 
 # Create dashboard
