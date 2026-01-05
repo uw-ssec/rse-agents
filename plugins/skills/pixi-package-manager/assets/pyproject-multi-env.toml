@@ -1,0 +1,56 @@
+[project]
+name = "research-pipeline"
+version = "0.1.0"
+dependencies = [
+    "python>=3.11",
+    "numpy>=1.24",
+    "pandas>=2.0",
+    "xarray>=2023.1",
+]
+
+# Development tools
+[tool.pixi.feature.dev.dependencies]
+ipython = ">=8.0"
+jupyter = ">=1.0"
+ruff = ">=0.1"
+
+[tool.pixi.feature.dev.pypi-dependencies]
+jupyterlab-vim = ">=0.16"
+
+# Testing tools
+[tool.pixi.feature.test.dependencies]
+pytest = ">=7.4"
+pytest-cov = ">=4.1"
+pytest-xdist = ">=3.3"
+hypothesis = ">=6.82"
+
+# GPU dependencies
+[tool.pixi.feature.gpu.dependencies]
+pytorch-cuda = "11.8.*"
+cudatoolkit = "11.8.*"
+
+[tool.pixi.feature.gpu.pypi-dependencies]
+nvidia-ml-py = ">=12.0"
+
+# Production optimizations
+[tool.pixi.feature.prod.dependencies]
+python = "3.11.*"  # pin exact version
+
+# Define environments combining features
+[tool.pixi.environments]
+default = { solve-group = "default" }
+dev = { features = ["dev"], solve-group = "default" }
+test = { features = ["test"], solve-group = "default" }
+gpu = { features = ["gpu"], solve-group = "gpu" }
+gpu-dev = { features = ["gpu", "dev"], solve-group = "gpu" }
+prod = { features = ["prod"], solve-group = "prod" }
+
+# Tasks for each environment
+[tool.pixi.tasks]
+dev-notebook = { cmd = "jupyter lab", env = { JUPYTER_CONFIG_DIR = ".jupyter" } }
+test = "pytest tests/ -v --cov=src"
+test-parallel = "pytest tests/ -n auto"
+train-cpu = "python train.py --device cpu"
+train-gpu = "python train.py --device cuda"
+benchmark = "python benchmark.py"
+

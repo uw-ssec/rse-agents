@@ -1,0 +1,43 @@
+[project]
+name = "my-science-project"
+version = "0.1.0"
+dependencies = [
+    "python>=3.11",
+    "numpy>=1.24",
+    "pandas>=2.0",
+]
+
+[tool.pixi.project]
+channels = ["conda-forge"]
+platforms = ["linux-64", "osx-64", "osx-arm64", "win-64"]
+
+[tool.pixi.dependencies]
+python = ">=3.10"
+numpy = ">=1.24"
+pandas = ">=2.0"
+
+[tool.pixi.feature.dev.dependencies]
+ruff = ">=0.6.0"
+mypy = ">=1.11"
+pre-commit = ">=3.5"
+pytest = ">=7.0"
+pytest-cov = ">=4.0"
+
+[tool.pixi.feature.dev.tasks]
+# Linting and formatting
+lint = "ruff check ."
+format = "ruff format ."
+check = { depends-on = ["lint", "format"] }
+
+# Type checking
+typecheck = "mypy src/"
+
+# Run all quality checks
+quality = { depends-on = ["check", "typecheck"] }
+
+# Testing
+test = "pytest tests/"
+
+# Full validation (run before committing)
+validate = { depends-on = ["quality", "test"] }
+
