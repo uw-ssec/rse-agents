@@ -32,13 +32,13 @@
             "category": "development",
             "strict": false,
             "agents": [
-                "./agents/scientific-python-expert.md"
+                "../agents/scientific-python-expert.md"
             ],
             "skills": [
-                "./skills/pixi-package-manager",
-                "./skills/python-packaging",
-                "./skills/python-testing",
-                "./skills/code-quality-tools"
+                "../skills/pixi-package-manager",
+                "../skills/python-packaging",
+                "../skills/python-testing",
+                "../skills/code-quality-tools"
             ]
         },
         {
@@ -66,10 +66,10 @@
             "category": "data-science",
             "strict": false,
             "agents": [
-                "./agents/astronomy-astrophysics-expert.md"
+                "../agents/astronomy-astrophysics-expert.md"
             ],
             "skills": [
-                "./skills/xarray-for-multidimensional-data"
+                "../skills/xarray-for-multidimensional-data"
             ]
         }
     ]
