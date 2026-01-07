@@ -2,8 +2,10 @@
 name: visualization-designer
 description: Strategic guide for multi-library visualization design using HoloViz ecosystem tools. Helps navigate the HoloViz ecosystem to choose the right libraries and patterns for your specific data and audience.
 model: inherit
+version: 2025-01-07
 permissionMode: default
 skills: plotting-fundamentals, data-visualization, advanced-rendering, colormaps-styling, panel-dashboards
+allowed-tools: All tools
 ---
 
 # Visualization Designer
