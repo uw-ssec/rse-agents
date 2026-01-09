@@ -34,7 +34,7 @@ jobs:
         run: |
           echo "Checking plugin structure..."
           # Find all plugin directories (any directory with .claude-plugin/plugin.json)
-          find plugins/ -name "plugin.json" -path "*/.claude-plugin/plugin.json" | while read plugin_json; do
+          while read plugin_json; do
             plugin=$(dirname $(dirname "$plugin_json"))
             echo "Validating $plugin"
 
@@ -46,14 +46,14 @@ jobs:
 
             # Check scripts are executable
             if [ -d "$plugin/scripts" ]; then
-              find "$plugin/scripts" -type f -name "*.sh" | while read script; do
+              while read script; do
                 if [ ! -x "$script" ]; then
                   echo "Script not executable: $script"
                   exit 1
                 fi
-              done
+              done < <(find "$plugin/scripts" -type f -name "*.sh")
             fi
-          done
+          done < <(find plugins/ -name "plugin.json" -path "*/.claude-plugin/plugin.json")
 
       - name: Validate marketplace catalog
         run: |
