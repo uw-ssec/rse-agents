@@ -34,7 +34,7 @@ jobs:
         run: |
           echo "Checking plugin structure..."
           # Find all plugin directories (any directory with .claude-plugin/plugin.json)
-          while read plugin_json; do
+          while IFS= read -r plugin_json; do
             plugin=$(dirname $(dirname "$plugin_json"))
             echo "Validating $plugin"
 
@@ -46,7 +46,7 @@ jobs:
 
             # Check scripts are executable
             if [ -d "$plugin/scripts" ]; then
-              while read script; do
+              while IFS= read -r script; do
                 if [ ! -x "$script" ]; then
                   echo "Script not executable: $script"
                   exit 1
