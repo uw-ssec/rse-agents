@@ -155,11 +155,13 @@ jobs:
           # Check for suspicious curl/wget to unknown domains
           if grep -r -E "curl.*http://[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+" plugins/ 2>/dev/null; then
             echo "⚠️  WARNING: curl to IP address detected - potential data exfiltration"
+            FOUND_ISSUES=1
           fi
 
           # Check for base64 encoded content (potential obfuscation)
           if grep -r -E "base64\s+-d" plugins/ 2>/dev/null; then
             echo "⚠️  WARNING: base64 decoding detected - potential obfuscation"
+            FOUND_ISSUES=1
           fi
 
           if [ $FOUND_ISSUES -eq 0 ]; then
@@ -172,7 +174,7 @@ jobs:
         run: |
           echo "Scanning for suspicious URLs..."
           # Check for non-HTTPS URLs (except localhost)
-          if grep -r -E "http://[^l]" plugins/ | grep -v "localhost" | grep -v "127.0.0.1" 2>/dev/null; then
+          if grep -r -E "http://" plugins/ 2>/dev/null | grep -v "localhost" | grep -v "127.0.0.1"; then
             echo "⚠️  WARNING: Non-HTTPS URLs detected (security risk)"
           fi
 
@@ -193,9 +195,9 @@ jobs:
               dir=$(dirname "$package")
               cd "$dir"
 
-              # Check for npm audit
+              # Check for npm audit (fail on high/critical vulnerabilities, allow low/moderate)
               if command -v npm &> /dev/null; then
-                npm audit --production || true
+                npm audit --production --audit-level=high
               fi
 
               cd -
