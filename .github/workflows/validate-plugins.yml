@@ -1,0 +1,204 @@
+name: Validate Plugins
+
+on:
+  pull_request:
+    paths:
+      - 'plugins/**'
+      - '.claude-plugin/**'
+      - 'marketplace/**'
+      - '.github/workflows/validate-plugins.yml'
+  push:
+    branches: [ main ]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Validate JSON files
+        run: |
+          echo "Validating JSON files..."
+          # Exclude tsconfig*.json files as they use JSONC (JSON with Comments)
+          find . -name "*.json" -not -name "tsconfig*.json" -type f -exec sh -c '
+            for file; do
+              echo "Checking $file"
+              if ! jq empty "$file" 2>/dev/null; then
+                echo "Invalid JSON: $file"
+                exit 1
+              fi
+            done
+          ' sh {} +
+
+      - name: Check plugin structure
+        run: |
+          echo "Checking plugin structure..."
+          # Find all plugin directories (any directory with .claude-plugin/plugin.json)
+          find plugins/ -name "plugin.json" -path "*/.claude-plugin/plugin.json" | while read plugin_json; do
+            plugin=$(dirname $(dirname "$plugin_json"))
+            echo "Validating $plugin"
+
+            # Check for README
+            if [ ! -f "$plugin/README.md" ]; then
+              echo "Missing README.md in $plugin"
+              exit 1
+            fi
+
+            # Check scripts are executable
+            if [ -d "$plugin/scripts" ]; then
+              find "$plugin/scripts" -type f -name "*.sh" | while read script; do
+                if [ ! -x "$script" ]; then
+                  echo "Script not executable: $script"
+                  exit 1
+                fi
+              done
+            fi
+          done
+
+      - name: Validate marketplace catalog
+        run: |
+          echo "Validating marketplace catalog..."
+          jq empty .claude-plugin/marketplace.json
+
+          # Check all plugin sources exist
+          jq -r '.plugins[].source' .claude-plugin/marketplace.json | while read source; do
+            if [[ "$source" == ./* ]]; then
+              if [ ! -d "$source" ]; then
+                echo "Plugin source not found: $source"
+                exit 1
+              fi
+            fi
+          done
+
+      - name: Security scan - Detect hardcoded secrets
+        run: |
+          echo "Scanning for hardcoded secrets..."
+          FOUND_SECRETS=0
+
+          # Check for common secret patterns, but exclude:
+          # - Placeholders (***", "xxx", "placeholder", etc.)
+          # - Password generation commands (openssl rand, pwgen, etc.)
+          # - Example/test values
+          # - Dynamic generation (random.choice, secrets.choice, etc.)
+          MATCHES=$(grep -r -E "(password|secret|api_key|token)(\s*)=(\s*)['\"]" plugins/ 2>/dev/null | \
+            grep -v '= "\*\*\*"' | \
+            grep -v "= '\*\*\*'" | \
+            grep -v '= "xxx"' | \
+            grep -v '= "XXX"' | \
+            grep -v 'placeholder' | \
+            grep -v 'PLACEHOLDER' | \
+            grep -v 'example' | \
+            grep -v 'EXAMPLE' | \
+            grep -v 'your-' | \
+            grep -v 'YOUR_' | \
+            grep -v 'test-' | \
+            grep -v 'openssl rand' | \
+            grep -v 'pwgen' | \
+            grep -v 'random.choice' | \
+            grep -v 'secrets.choice' | \
+            grep -v '\$(' | \
+            grep -E "['\"][^'\"]{20,}" || true)
+
+          if [ -n "$MATCHES" ]; then
+            echo "⚠️  WARNING: Potential hardcoded secrets detected!"
+            echo "$MATCHES"
+            echo "Please review the above matches and use environment variables instead."
+            FOUND_SECRETS=1
+          fi
+
+          # Check for AWS keys (critical - always fail)
+          # Exclude official AWS example key: AKIAIOSFODNN7EXAMPLE
+          AWS_KEYS=$(grep -r -E "AKIA[0-9A-Z]{16}" plugins/ 2>/dev/null | grep -v "AKIAIOSFODNN7EXAMPLE" || true)
+          if [ -n "$AWS_KEYS" ]; then
+            echo "❌ ERROR: AWS Access Key detected!"
+            echo "$AWS_KEYS"
+            exit 1
+          fi
+
+          # Check for private keys (critical - always fail)
+          # Exclude README and SKILL files (documentation of patterns to look for)
+          # Exclude tests/, CHANGES.md, and security pattern definitions (redact.py)
+          PRIVATE_KEYS=$(grep -r "BEGIN.*PRIVATE KEY" plugins/ 2>/dev/null | grep -v "README.md" | grep -v "SKILL.md" | grep -v "Pattern:" | grep -v "/tests/" | grep -v "CHANGES.md" | grep -v "redact.py" || true)
+          if [ -n "$PRIVATE_KEYS" ]; then
+            echo "❌ ERROR: Private key detected!"
+            echo "$PRIVATE_KEYS"
+            exit 1
+          fi
+
+          if [ $FOUND_SECRETS -eq 0 ]; then
+            echo "✅ No hardcoded secrets detected"
+          else
+            echo "⚠️  Review warnings above, but not blocking CI"
+          fi
+
+      - name: Security scan - Dangerous patterns
+        run: |
+          echo "Scanning for dangerous command patterns..."
+          FOUND_ISSUES=0
+
+          # Check for destructive commands (only root deletion, not /var/... paths)
+          # Match: rm -rf / or rm -rf /* but NOT rm -rf /var/... etc.
+          DANGEROUS_RM=$(grep -r -E "rm\s+-rf\s+/(\s|$|\*)" plugins/ 2>/dev/null | grep -v "/var/" | grep -v "/tmp/" | grep -v "/prometheus/" || true)
+          if [ -n "$DANGEROUS_RM" ]; then
+            echo "❌ ERROR: Dangerous 'rm -rf /' pattern detected!"
+            echo "$DANGEROUS_RM"
+            FOUND_ISSUES=1
+          fi
+
+          # Check for command injection risks (exclude README documentation)
+          EVAL_USES=$(grep -r -E "eval\s*\(" plugins/ 2>/dev/null | grep -v "README.md" | grep -v "this.redis.eval" || true)
+          if [ -n "$EVAL_USES" ]; then
+            echo "⚠️  WARNING: 'eval()' detected - potential command injection risk"
+            echo "$EVAL_USES"
+          fi
+
+          # Check for suspicious curl/wget to unknown domains
+          if grep -r -E "curl.*http://[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+" plugins/ 2>/dev/null; then
+            echo "⚠️  WARNING: curl to IP address detected - potential data exfiltration"
+          fi
+
+          # Check for base64 encoded content (potential obfuscation)
+          if grep -r -E "base64\s+-d" plugins/ 2>/dev/null; then
+            echo "⚠️  WARNING: base64 decoding detected - potential obfuscation"
+          fi
+
+          if [ $FOUND_ISSUES -eq 0 ]; then
+            echo "✅ No dangerous patterns detected"
+          else
+            exit 1
+          fi
+
+      - name: Security scan - Suspicious URLs
+        run: |
+          echo "Scanning for suspicious URLs..."
+          # Check for non-HTTPS URLs (except localhost)
+          if grep -r -E "http://[^l]" plugins/ | grep -v "localhost" | grep -v "127.0.0.1" 2>/dev/null; then
+            echo "⚠️  WARNING: Non-HTTPS URLs detected (security risk)"
+          fi
+
+          # Check for URL shorteners (potential phishing)
+          if grep -r -E "(bit\.ly|tinyurl\.com|goo\.gl)" plugins/ 2>/dev/null; then
+            echo "⚠️  WARNING: URL shorteners detected (potential phishing)"
+          fi
+
+          echo "✅ URL scan complete"
+
+      - name: Security scan - MCP plugin dependencies
+        if: hashFiles('plugins/mcp/*/package.json') != ''
+        run: |
+          echo "Scanning MCP plugin dependencies..."
+          for package in plugins/mcp/*/package.json; do
+            if [ -f "$package" ]; then
+              echo "Checking $package"
+              dir=$(dirname "$package")
+              cd "$dir"
+
+              # Check for npm audit
+              if command -v npm &> /dev/null; then
+                npm audit --production || true
+              fi
+
+              cd -
+            fi
+          done
+          echo "✅ Dependency scan complete"
