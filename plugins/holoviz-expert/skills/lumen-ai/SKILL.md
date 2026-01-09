@@ -126,7 +126,7 @@ Specialized components that handle specific tasks:
 - **VegaLiteAgent**: Publication-quality charts
 - **AnalysisAgent**: Custom domain-specific analyses
 
-**See**: [Built-in Agents Reference](../../resources/lumen-ai/agents-reference.md) for complete agent documentation.
+**See**: [Built-in Agents Reference](../../references/lumen-ai/agents-reference.md) for complete agent documentation.
 
 ### 2. LLM Providers
 
@@ -142,7 +142,7 @@ Lumen AI works with multiple LLM providers:
 - Ollama (Llama 3.1, Mistral, CodeLlama)
 - LlamaCPP (custom models)
 
-**See**: [LLM Provider Configuration](../../resources/lumen-ai/llm-providers.md) for setup details and provider comparison.
+**See**: [LLM Provider Configuration](../../references/lumen-ai/llm-providers.md) for setup details and provider comparison.
 
 ### 3. Memory and Context
 
@@ -158,7 +158,7 @@ Extend agent capabilities:
 - **TableLookup**: Schema and metadata access
 - **Custom Tools**: External APIs, calculations, etc.
 
-**See**: [Custom Tools Guide](../../resources/lumen-ai/custom-tools.md) for building tools.
+**See**: [Custom Tools Guide](../../references/lumen-ai/custom-tools.md) for building tools.
 
 ## Common Patterns
 
@@ -234,7 +234,7 @@ ui = lmai.ExplorerUI(
 )
 ```
 
-**See**: [Custom Agents Guide](../../resources/lumen-ai/custom-agents.md) for detailed development guide.
+**See**: [Custom Agents Guide](../../references/lumen-ai/custom-agents.md) for detailed development guide.
 
 ### Pattern 4: Custom Analysis
 
@@ -265,7 +265,7 @@ ui = lmai.ExplorerUI(
 )
 ```
 
-**See**: [Custom Analyses Guide](../../resources/lumen-ai/custom-analyses.md) for examples.
+**See**: [Custom Analyses Guide](../../references/lumen-ai/custom-analyses.md) for examples.
 
 ### Pattern 5: Multi-Source Data
 
@@ -297,7 +297,7 @@ Quick reference for choosing LLM:
 | Sensitive data | Ollama | llama3.1 | Local only |
 | Development | OpenAI | gpt-4o-mini | Fast, cheap |
 
-**See**: [LLM Provider Configuration](../../resources/lumen-ai/llm-providers.md) for complete setup.
+**See**: [LLM Provider Configuration](../../references/lumen-ai/llm-providers.md) for complete setup.
 
 ### Agent Selection
 
@@ -412,7 +412,7 @@ COPY app.py data/ ./
 CMD ["panel", "serve", "app.py", "--port", "5006", "--address", "0.0.0.0"]
 ```
 
-**See**: [Deployment Guide](../../resources/lumen-ai/deployment.md) for production deployment, Docker, Kubernetes, and security.
+**See**: [Deployment Guide](../../references/lumen-ai/deployment.md) for production deployment, Docker, Kubernetes, and security.
 
 ## Troubleshooting
 
@@ -445,7 +445,7 @@ for agent in ui.agents:
 - Provide example queries in agent prompts
 - Check table schemas match query expectations
 
-**See**: [Troubleshooting Guide](../../resources/lumen-ai/troubleshooting.md) for complete troubleshooting reference.
+**See**: [Troubleshooting Guide](../../references/lumen-ai/troubleshooting.md) for complete troubleshooting reference.
 
 ## Progressive Learning Path
 
@@ -455,7 +455,7 @@ for agent in ui.agents:
 3. Configure LLM provider
 
 **Resources**:
-- [LLM Provider Configuration](../../resources/lumen-ai/llm-providers.md)
+- [LLM Provider Configuration](../../references/lumen-ai/llm-providers.md)
 
 ### Level 2: Python API
 1. Create basic ExplorerUI
@@ -463,7 +463,7 @@ for agent in ui.agents:
 3. Add document context (RAG)
 
 **Resources**:
-- [Built-in Agents Reference](../../resources/lumen-ai/agents-reference.md)
+- [Built-in Agents Reference](../../references/lumen-ai/agents-reference.md)
 
 ### Level 3: Customization
 1. Build custom agents
@@ -471,9 +471,9 @@ for agent in ui.agents:
 3. Add custom tools
 
 **Resources**:
-- [Custom Agents Guide](../../resources/lumen-ai/custom-agents.md)
-- [Custom Analyses Guide](../../resources/lumen-ai/custom-analyses.md)
-- [Custom Tools Guide](../../resources/lumen-ai/custom-tools.md)
+- [Custom Agents Guide](../../references/lumen-ai/custom-agents.md)
+- [Custom Analyses Guide](../../references/lumen-ai/custom-analyses.md)
+- [Custom Tools Guide](../../references/lumen-ai/custom-tools.md)
 
 ### Level 4: Production
 1. Deploy with authentication
@@ -481,18 +481,18 @@ for agent in ui.agents:
 3. Scale horizontally
 
 **Resources**:
-- [Deployment Guide](../../resources/lumen-ai/deployment.md)
+- [Deployment Guide](../../references/lumen-ai/deployment.md)
 
 ## Additional Resources
 
 ### Documentation
-- **[LLM Provider Configuration](../../resources/lumen-ai/llm-providers.md)** - Setup for OpenAI, Anthropic, local models
-- **[Built-in Agents Reference](../../resources/lumen-ai/agents-reference.md)** - Complete agent documentation
-- **[Custom Agents Guide](../../resources/lumen-ai/custom-agents.md)** - Build specialized agents
-- **[Custom Analyses Guide](../../resources/lumen-ai/custom-analyses.md)** - Domain-specific analyses
-- **[Custom Tools Guide](../../resources/lumen-ai/custom-tools.md)** - Extend agent capabilities
-- **[Deployment Guide](../../resources/lumen-ai/deployment.md)** - Production deployment
-- **[Troubleshooting Guide](../../resources/lumen-ai/troubleshooting.md)** - Common issues and solutions
+- **[LLM Provider Configuration](../../references/lumen-ai/llm-providers.md)** - Setup for OpenAI, Anthropic, local models
+- **[Built-in Agents Reference](../../references/lumen-ai/agents-reference.md)** - Complete agent documentation
+- **[Custom Agents Guide](../../references/lumen-ai/custom-agents.md)** - Build specialized agents
+- **[Custom Analyses Guide](../../references/lumen-ai/custom-analyses.md)** - Domain-specific analyses
+- **[Custom Tools Guide](../../references/lumen-ai/custom-tools.md)** - Extend agent capabilities
+- **[Deployment Guide](../../references/lumen-ai/deployment.md)** - Production deployment
+- **[Troubleshooting Guide](../../references/lumen-ai/troubleshooting.md)** - Common issues and solutions
 
 ### External Links
 - [Lumen AI Documentation](https://lumen.holoviz.org/lumen_ai/)

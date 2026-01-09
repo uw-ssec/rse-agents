@@ -166,8 +166,8 @@ We welcome contributions of new agents, skills, and improvements! Please see [CO
 For detailed information about the plugins and their contents:
 
 - [Contributing Guidelines](CONTRIBUTING.md) - How to contribute to this repository
-- [HoloViz Ecosystem Overview](plugins/resources/holoviz/holoviz-ecosystem.md) - Introduction to the HoloViz ecosystem
-- [HoloViz Library Matrix](plugins/resources/holoviz/library-matrix.md) - Comparison of HoloViz libraries and when to use each
+- [HoloViz Ecosystem Overview](plugins/references/holoviz/holoviz-ecosystem.md) - Introduction to the HoloViz ecosystem
+- [HoloViz Library Matrix](plugins/references/holoviz/library-matrix.md) - Comparison of HoloViz libraries and when to use each
 
 ## Related Resources
 

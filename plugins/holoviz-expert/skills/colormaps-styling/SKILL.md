@@ -69,7 +69,7 @@ data.hvplot('x', 'y', c='category', cmap=cc.palette['tab10'])
 data.hvplot('x', 'y', c='angle', cmap=cm['cet_cyclic_c1'])
 ```
 
-**See**: [Colormap Reference](../../resources/colormaps/colormap-reference.md) for complete catalog
+**See**: [Colormap Reference](../../references/colormaps/colormap-reference.md) for complete catalog
 
 ### 2. Accessibility
 
@@ -88,7 +88,7 @@ cmap=cm['cet_t10']
 cmap=cm['cet_gray_r']
 ```
 
-**See**: [Accessibility Guide](../../resources/colormaps/accessibility.md) for comprehensive guidelines
+**See**: [Accessibility Guide](../../references/colormaps/accessibility.md) for comprehensive guidelines
 
 ### 3. Colormap Selection Guide
 
@@ -123,7 +123,7 @@ scatter.opts(
 )
 ```
 
-**See**: [HoloViews Styling](../../resources/colormaps/holoviews-styling.md) for advanced customization
+**See**: [HoloViews Styling](../../references/colormaps/holoviews-styling.md) for advanced customization
 
 ### 5. Panel Themes
 
@@ -143,7 +143,7 @@ template = pn.template.FastListTemplate(
 )
 ```
 
-**See**: [Panel Themes](../../resources/colormaps/panel-themes.md) for theme customization
+**See**: [Panel Themes](../../references/colormaps/panel-themes.md) for theme customization
 
 ## Common Patterns
 
@@ -380,7 +380,7 @@ print(pn.config.theme)  # 'default' or 'dark'
 
 **Resources**:
 - Quick Start (this doc)
-- [Colormap Reference](../../resources/colormaps/colormap-reference.md)
+- [Colormap Reference](../../references/colormaps/colormap-reference.md)
 
 ### Level 2: Accessibility
 1. Understand colormap categories
@@ -388,7 +388,7 @@ print(pn.config.theme)  # 'default' or 'dark'
 3. Test for colorblindness
 
 **Resources**:
-- [Accessibility Guide](../../resources/colormaps/accessibility.md)
+- [Accessibility Guide](../../references/colormaps/accessibility.md)
 
 ### Level 3: Advanced Styling
 1. Customize HoloViews opts
@@ -396,16 +396,16 @@ print(pn.config.theme)  # 'default' or 'dark'
 3. Consistent branding
 
 **Resources**:
-- [HoloViews Styling](../../resources/colormaps/holoviews-styling.md)
-- [Panel Themes](../../resources/colormaps/panel-themes.md)
+- [HoloViews Styling](../../references/colormaps/holoviews-styling.md)
+- [Panel Themes](../../references/colormaps/panel-themes.md)
 
 ## Additional Resources
 
 ### Documentation
-- **[Colormap Reference](../../resources/colormaps/colormap-reference.md)** - Complete colormap catalog
-- **[Accessibility Guide](../../resources/colormaps/accessibility.md)** - Colorblind-friendly design
-- **[HoloViews Styling](../../resources/colormaps/holoviews-styling.md)** - Advanced customization
-- **[Panel Themes](../../resources/colormaps/panel-themes.md)** - Theme and branding
+- **[Colormap Reference](../../references/colormaps/colormap-reference.md)** - Complete colormap catalog
+- **[Accessibility Guide](../../references/colormaps/accessibility.md)** - Colorblind-friendly design
+- **[HoloViews Styling](../../references/colormaps/holoviews-styling.md)** - Advanced customization
+- **[Panel Themes](../../references/colormaps/panel-themes.md)** - Theme and branding
 
 ### External Links
 - [Colorcet Documentation](https://colorcet.holoviz.org/)

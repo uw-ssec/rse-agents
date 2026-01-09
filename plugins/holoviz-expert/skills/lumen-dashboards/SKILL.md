@@ -113,7 +113,7 @@ sources:
       sales: ./data/sales.csv
 ```
 
-**See**: [Data Sources Reference](../../resources/lumen-dashboards/sources.md) for comprehensive source configuration.
+**See**: [Data Sources Reference](../../references/lumen-dashboards/sources.md) for comprehensive source configuration.
 
 ### 2. Pipelines
 
@@ -197,7 +197,7 @@ transforms:
       avg: {revenue: mean}
 ```
 
-**See**: [Data Transforms Reference](../../resources/lumen-dashboards/transforms.md) for all transform types.
+**See**: [Data Transforms Reference](../../references/lumen-dashboards/transforms.md) for all transform types.
 
 ### 5. Views
 
@@ -228,7 +228,7 @@ views:
     format: '${value:,.0f}'
 ```
 
-**See**: [Views Reference](../../resources/lumen-dashboards/views.md) for all view types and options.
+**See**: [Views Reference](../../references/lumen-dashboards/views.md) for all view types and options.
 
 ### 6. Layouts
 
@@ -254,7 +254,7 @@ layouts:
 - **Tabs**: Multiple layouts become tabs
 - **Responsive**: Adapts to screen size
 
-**See**: [Layouts Reference](../../resources/lumen-dashboards/layouts.md) for advanced layout patterns.
+**See**: [Layouts Reference](../../references/lumen-dashboards/layouts.md) for advanced layout patterns.
 
 ## Common Patterns
 
@@ -441,7 +441,7 @@ dashboard = Dashboard(
 dashboard.servable()
 ```
 
-**See**: [Python API Reference](../../resources/lumen-dashboards/python-api.md) for detailed API usage.
+**See**: [Python API Reference](../../references/lumen-dashboards/python-api.md) for detailed API usage.
 
 ## Configuration
 
@@ -511,7 +511,7 @@ COPY dashboard.yaml data/ ./
 CMD ["lumen", "serve", "dashboard.yaml", "--port", "5006", "--address", "0.0.0.0"]
 ```
 
-**See**: [Deployment Guide](../../resources/lumen-dashboards/deployment.md) for production deployment best practices.
+**See**: [Deployment Guide](../../references/lumen-dashboards/deployment.md) for production deployment best practices.
 
 ## Best Practices
 
@@ -609,7 +609,7 @@ lumen serve dashboard.yaml --log-level=debug
 - Reduce number of rows displayed
 - Use aggregation before visualization
 
-**See**: [Troubleshooting Guide](../../resources/lumen-dashboards/troubleshooting.md) for common issues.
+**See**: [Troubleshooting Guide](../../references/lumen-dashboards/troubleshooting.md) for common issues.
 
 ## Progressive Learning Path
 
@@ -620,7 +620,7 @@ lumen serve dashboard.yaml --log-level=debug
 
 **Resources**:
 - Quick Start (this doc)
-- [Data Sources Reference](../../resources/lumen-dashboards/sources.md)
+- [Data Sources Reference](../../references/lumen-dashboards/sources.md)
 
 ### Level 2: Transforms
 1. Filter and aggregate data
@@ -628,7 +628,7 @@ lumen serve dashboard.yaml --log-level=debug
 3. Chain multiple transforms
 
 **Resources**:
-- [Data Transforms Reference](../../resources/lumen-dashboards/transforms.md)
+- [Data Transforms Reference](../../references/lumen-dashboards/transforms.md)
 
 ### Level 3: Advanced Layouts
 1. Multi-page dashboards
@@ -636,8 +636,8 @@ lumen serve dashboard.yaml --log-level=debug
 3. Custom themes
 
 **Resources**:
-- [Layouts Reference](../../resources/lumen-dashboards/layouts.md)
-- [Views Reference](../../resources/lumen-dashboards/views.md)
+- [Layouts Reference](../../references/lumen-dashboards/layouts.md)
+- [Views Reference](../../references/lumen-dashboards/views.md)
 
 ### Level 4: Production
 1. Database integration
@@ -645,19 +645,19 @@ lumen serve dashboard.yaml --log-level=debug
 3. Deployment
 
 **Resources**:
-- [Deployment Guide](../../resources/lumen-dashboards/deployment.md)
+- [Deployment Guide](../../references/lumen-dashboards/deployment.md)
 
 ## Additional Resources
 
 ### Documentation
-- **[Data Sources Reference](../../resources/lumen-dashboards/sources.md)** - All source types and configuration
-- **[Data Transforms Reference](../../resources/lumen-dashboards/transforms.md)** - Complete transform reference
-- **[Views Reference](../../resources/lumen-dashboards/views.md)** - All visualization types
-- **[Layouts Reference](../../resources/lumen-dashboards/layouts.md)** - Layout patterns and organization
-- **[Python API Reference](../../resources/lumen-dashboards/python-api.md)** - Programmatic dashboard creation
-- **[Deployment Guide](../../resources/lumen-dashboards/deployment.md)** - Production deployment
-- **[Examples](../../resources/lumen-dashboards/examples.md)** - Complete dashboard examples
-- **[Troubleshooting Guide](../../resources/lumen-dashboards/troubleshooting.md)** - Common issues
+- **[Data Sources Reference](../../references/lumen-dashboards/sources.md)** - All source types and configuration
+- **[Data Transforms Reference](../../references/lumen-dashboards/transforms.md)** - Complete transform reference
+- **[Views Reference](../../references/lumen-dashboards/views.md)** - All visualization types
+- **[Layouts Reference](../../references/lumen-dashboards/layouts.md)** - Layout patterns and organization
+- **[Python API Reference](../../references/lumen-dashboards/python-api.md)** - Programmatic dashboard creation
+- **[Deployment Guide](../../references/lumen-dashboards/deployment.md)** - Production deployment
+- **[Examples](../../references/lumen-dashboards/examples.md)** - Complete dashboard examples
+- **[Troubleshooting Guide](../../references/lumen-dashboards/troubleshooting.md)** - Common issues
 
 ### External Links
 - [Lumen Documentation](https://lumen.holoviz.org/)
