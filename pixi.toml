@@ -1,5 +1,5 @@
 [workspace]
-name = "rse-agents"
+name = "rse-plugins"
 version = "0.1.0"
 description = "Custom AI agents and skills for Research Software Engineering (RSE) and Scientific Computing tasks"
 channels = ["conda-forge"]

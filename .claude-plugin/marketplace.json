@@ -1,5 +1,5 @@
 {
-    "name": "rse-agents",
+    "name": "rse-plugins",
     "owner": {
         "name": "UW SSEC Team",
         "url": "https://github.com/uw-ssec"
@@ -9,43 +9,26 @@
     },
     "plugins": [
         {
-            "name": "python-development",
-            "source": "./plugins",
+            "name": "scientific-python-development",
+            "source": "./plugins/scientific-python-development",
             "description": "Agents and skills for Scientific Python development and best practices",
-            "version": "0.1.1",
-            "author": {
-                "name": "Landung Setiawan",
-                "url": "https://github.com/lsetiawan"
-            },
-            "homepage": "https://github.com/uw-ssec/rse-agents",
-            "repository": "https://github.com/uw-ssec/rse-agents",
-            "license": "MIT",
+            "homepage": "https://github.com/uw-ssec/rse-plugins",
+            "repository": "https://github.com/uw-ssec/rse-plugins",
+            "license": "BSD-3-Clause",
             "keywords": [
                 "python",
                 "scientific-computing",
-                "research-software-engineering",
-                "rse",
-                "ai-agents",
-                "claude-plugins"
+                "research-software-engineering"
             ],
             "category": "development",
-            "strict": false,
-            "agents": [
-                "./agents/scientific-python-expert.md"
-            ],
-            "skills": [
-                "./skills/pixi-package-manager",
-                "./skills/python-packaging",
-                "./skills/python-testing",
-                "./skills/code-quality-tools"
-            ]
+            "strict": false
         },
         {
             "name": "holoviz-visualization",
             "source": "./community-plugins/holoviz-visualization",
             "description": "Development kit for working with HoloViz ecosystem (Panel, hvPlot, HoloViews, Datashader, GeoViews, Lumen)",
-            "homepage": "https://github.com/uw-ssec/rse-agents",
-            "repository": "https://github.com/uw-ssec/rse-agents",
+            "homepage": "https://github.com/uw-ssec/rse-plugins",
+            "repository": "https://github.com/uw-ssec/rse-plugins",
             "license": "BSD-3-Clause",
             "keywords": [
                 "holoviz",

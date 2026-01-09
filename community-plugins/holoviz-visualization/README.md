@@ -298,7 +298,7 @@ pip install holoviz-mcp
 
 ## Architecture
 
-**Self-Contained Plugin Structure** - Designed for the rse-agents marketplace:
+**Self-Contained Plugin Structure** - Designed for the rse-plugins marketplace:
 
 ```
 plugins/holoviz-expert/                       # Self-contained plugin
@@ -614,7 +614,7 @@ The MCP server enables:
 ## Quality Assurance
 
 ### Validation Checklist
-- ✅ Plugin structure follows rse-agents pattern
+- ✅ Plugin structure follows rse-plugins pattern
 - ✅ All required metadata present
 - ✅ Naming conventions correct (kebab-case)
 - ✅ Documentation comprehensive
@@ -736,7 +736,7 @@ If you use this plugin in your research, please cite HoloViz:
 ## Changelog
 
 ### Version 0.1.0 (Current)
-- Complete restructure following rse-agents plugin pattern
+- Complete restructure following rse-plugins plugin pattern
 - 4 specialized agents (584 lines total)
 - 9 comprehensive skills (4,055 lines total)
 - Extensive reference materials (11,224 lines):

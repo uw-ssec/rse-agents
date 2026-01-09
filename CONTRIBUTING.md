@@ -1,6 +1,6 @@
-# Contributing to RSE Agents
+# Contributing to RSE Plugins
 
-Thank you for your interest in contributing to RSE Agents! This document provides guidelines for creating and contributing custom agents for scientific software engineering tasks.
+Thank you for your interest in contributing to RSE Plugins! This document provides guidelines for creating and contributing custom agents for scientific software engineering tasks.
 
 ## 🌟 Types of Contributions
 
@@ -88,7 +88,7 @@ Good agents for scientific software should:
 
 ## 📝 Contribution Workflow
 
-1. **Fork the Repository**: Create your own fork of uw-ssec/rse-agents
+1. **Fork the Repository**: Create your own fork of uw-ssec/rse-plugins
 
 2. **Create a Branch**: Make a branch for your contribution
    ```bash

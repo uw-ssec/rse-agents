@@ -1,4 +1,4 @@
-# RSE Agents
+# RSE Plugins
 
 Custom AI agents and skills for Research Software Engineering (RSE) and Scientific Computing tasks, designed for use with [Claude Code](https://www.anthropic.com/claude/code) and compatible AI coding assistants.
 
@@ -21,7 +21,7 @@ This repository provides specialized agents and skills that understand the uniqu
 To use these agents and skills in Claude Code, add this repository to your plugin marketplace:
 
 ```bash
-/plugin marketplace add uw-ssec/rse-agents
+/plugin marketplace add uw-ssec/rse-plugins
 ```
 
 Once installed, the agents and skills will be available in your Claude Code environment and can be invoked when working on scientific software projects.
@@ -86,7 +86,7 @@ Browse the [plugins directory](plugins/) to explore all available plugins.
 ## Repository Structure
 
 ```
-rse-agents/
+rse-plugins/
 ├── .claude-plugin/
 │   └── marketplace.json             # Claude plugin marketplace configuration
 ├── plugins/
@@ -210,4 +210,4 @@ Developed and maintained by the University of Washington Scientific Software Eng
 
 ## Questions or Issues?
 
-Please open an issue on [GitHub](https://github.com/uw-ssec/rse-agents/issues).
+Please open an issue on [GitHub](https://github.com/uw-ssec/rse-plugins/issues).
