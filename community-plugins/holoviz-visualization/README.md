@@ -546,33 +546,34 @@ AI-powered natural language data exploration:
 
 ## Integration with MCP Server
 
-The plugin includes MCP server configuration for real-time library access using Docker:
+The plugin includes MCP server configuration for real-time library access using Docker with STDIO transport.
 
-### Docker Setup (Recommended)
+### Docker STDIO Setup (Recommended)
 
-**Step 1: Pull and run the Docker container**
+**Step 1: Pull the Docker image**
 
 ```bash
 docker pull ghcr.io/marcskovmadsen/holoviz-mcp:latest
-
-docker run -d \
-  --name holoviz-mcp \
-  -p 8000:8000 \
-  -e HOLOVIZ_MCP_TRANSPORT=http \
-  -v ~/.holoviz-mcp:/root/.holoviz-mcp \
-  ghcr.io/marcskovmadsen/holoviz-mcp:latest
 ```
 
 **Step 2: Configuration**
 
-The `.mcp.json` file is pre-configured for Docker HTTP transport:
+The `.mcp.json` file is pre-configured for Docker STDIO transport:
 
 ```json
 {
-  "servers": {
-    "holoviz": {
-      "type": "http",
-      "url": "http://localhost:8000/mcp/"
+  "mcpServers": {
+    "holoviz-mcp": {
+      "command": "docker",
+      "args": [
+        "run",
+        "-i",
+        "--rm",
+        "-v",
+        "~/.holoviz-mcp:/root/.holoviz-mcp",
+        "ghcr.io/marcskovmadsen/holoviz-mcp:latest"
+      ],
+      "env": {}
     }
   }
 }
@@ -587,15 +588,40 @@ uv tool install holoviz-mcp[panel-extensions]
 uvx --from holoviz-mcp holoviz-mcp-update
 ```
 
-Update `.mcp.json` to use stdio transport:
+Update `.mcp.json` to use local stdio transport:
 
 ```json
 {
-  "servers": {
-    "holoviz": {
-      "type": "stdio",
+  "mcpServers": {
+    "holoviz-mcp": {
       "command": "uvx",
-      "args": ["holoviz-mcp"]
+      "args": ["holoviz-mcp"],
+      "env": {}
+    }
+  }
+}
+```
+
+### Alternative: Docker HTTP Transport
+
+For HTTP-based transport with a long-running container:
+
+```bash
+docker run -d \
+  --name holoviz-mcp \
+  -p 8000:8000 \
+  -e HOLOVIZ_MCP_TRANSPORT=http \
+  -v ~/.holoviz-mcp:/root/.holoviz-mcp \
+  ghcr.io/marcskovmadsen/holoviz-mcp:latest
+```
+
+Configure for HTTP transport:
+
+```json
+{
+  "mcpServers": {
+    "holoviz-mcp": {
+      "url": "http://localhost:8000/mcp/"
     }
   }
 }
