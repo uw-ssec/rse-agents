@@ -9,6 +9,26 @@
     },
     "plugins": [
         {
+            "name": "scientific-domain-applications",
+            "source": "./plugins/scientific-domain-applications",
+            "description": "Domain-specific scientific computing agents and skills",
+            "homepage": "https://github.com/uw-ssec/rse-plugins",
+            "repository": "https://github.com/uw-ssec/rse-plugins",
+            "license": "BSD-3-Clause",
+            "keywords": [
+                "astronomy",
+                "astrophysics",
+                "astropy",
+                "xarray",
+                "geospatial",
+                "climate",
+                "visualization",
+                "scientific-computing"
+            ],
+            "category": "data-science",
+            "strict": false
+        },
+        {
             "name": "scientific-python-development",
             "source": "./plugins/scientific-python-development",
             "description": "Agents and skills for Scientific Python development and best practices",
