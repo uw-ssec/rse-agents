@@ -1,7 +1,7 @@
 ---
 name: scientific-documentation
-version: "1.0.0"
-description: This skill should be used when the user asks to "set up documentation", "create docs for Python package", "configure Sphinx", "set up MkDocs", "write docstrings", "use NumPy-style docstrings", "set up Read the Docs", "integrate Jupyter notebooks in docs", "organize documentation with Diataxis", "create API reference docs", "build documentation with nox", "fix documentation build errors", "documentation build fails", "sphinx warning", "autodoc error", "fix sphinx errors", or needs guidance on scientific Python documentation best practices, Sphinx extensions, documentation themes (pydata-sphinx-theme, furo, material), documentation hosting, or troubleshooting documentation issues.
+version: "0.1.0"
+description: This skill should be used when the user asks to "set up documentation", "create docs for Python package", "configure Sphinx", "set up MkDocs", "write docstrings", "use NumPy-style docstrings", "set up Read the Docs", "integrate Jupyter notebooks in docs", "organize documentation with Diataxis", "create API reference docs", "build documentation with nox", "fix documentation build errors", "documentation build fails", "sphinx warning", "autodoc error", "fix sphinx errors", "make documentation accessible", "accessibility guidelines for docs", "accessible images", "alt text for figures", "colorblind-friendly plots", "color contrast in docs", or needs guidance on scientific Python documentation best practices, Sphinx extensions, documentation themes (pydata-sphinx-theme, furo, material), documentation hosting, accessibility standards, or troubleshooting documentation issues.
 ---
 
 # Scientific Python Documentation
@@ -13,11 +13,12 @@ A comprehensive guide to creating documentation for scientific Python packages f
 This skill includes extensive supporting materials for documentation tasks:
 
 **References** (detailed guides):
-- `references/DIATAXIS_FRAMEWORK.md` - Complete Diátaxis framework guide with examples for all four documentation types
+- `references/DIATAXIS_FRAMEWORK.md` - Complete Diataxis framework guide with examples for all four documentation types
 - `references/SPHINX_EXTENSIONS.md` - Detailed Sphinx extension configuration and usage
 - `references/DOCSTRING_EXAMPLES.md` - Comprehensive NumPy-style docstring examples for functions, classes, and modules
 - `references/NOTEBOOK_INTEGRATION.md` - Jupyter notebook integration guide for Sphinx and MkDocs
 - `references/COMMON_ISSUES.md` - Troubleshooting documentation build issues
+- `references/ACCESSIBLE_DOCUMENTATION.md` - Accessibility guidelines for scientific documentation including images, color contrast, and alt text
 
 **Assets** (ready-to-use templates):
 - `assets/sphinx-conf-scientific.py` - Complete Sphinx `conf.py` template for scientific Python
@@ -606,6 +607,65 @@ docs/
 5. **No search keywords** - Use descriptive titles and headers
 
 > For detailed troubleshooting of common documentation build issues, see `references/COMMON_ISSUES.md`.
+
+## Accessibility Guidelines
+
+Accessible documentation ensures all users can effectively use your documentation regardless of ability. Follow these core principles based on the [Scientific Python Accessible Documentation Guide](https://learn.scientific-python.org/documentation/accessible-documentation/).
+
+### Core Principles
+
+1. **Write it out** - Text is highly adaptable across screen readers, search engines, and different devices
+2. **Provide multiple options** - Offer both text explanations and images for concepts
+3. **Use semantic structures** - Use HTML/Markdown elements as intended (headings for hierarchy, lists for related items)
+
+### Documentation Structure
+
+- Use headings in hierarchical order without skipping levels (H1 to H2 to H3, not H1 to H3)
+- Create descriptive page titles that match navigation labels
+- Include table of contents with jump links for long pages
+- Provide site search functionality
+
+### Text Accessibility
+
+- Write complete sentences with proper grammar and punctuation
+- Use plain language; avoid unnecessary jargon
+- Define field-specific terms and expand acronyms on first use
+- Write descriptive link text (not "click here")
+
+### Image Accessibility
+
+**Design requirements:**
+- Images must remain comprehensible in grayscale
+- Avoid red-green color combinations that overlap
+- Maintain minimum 4.5:1 color contrast for text
+- Ensure annotations are readable (similar size to body text)
+- Prevent animated flashing (no more than 3 times per second)
+
+**Context requirements:**
+- Provide alt text capturing the information conveyed
+- Include detailed image descriptions for complex figures
+- All text in images must appear as actual text elsewhere
+- Link to source data or notebooks when applicable
+
+### Video Accessibility
+
+- Introduce videos contextually before they appear
+- Require explicit play/pause controls (no autoplay)
+- Include closed captions and provide linked transcripts
+- Ensure video content is duplicated in text elsewhere
+
+### Quick Accessibility Checklist
+
+- [ ] Page titles match navigation labels
+- [ ] Headings in proper order (no skipping levels)
+- [ ] Color contrast at least 4.5:1
+- [ ] Images work in grayscale
+- [ ] All images have meaningful alt text
+- [ ] Link text describes destination
+- [ ] Videos have controls (no autoplay)
+- [ ] Text alternatives for all non-text content
+
+> For comprehensive accessibility guidelines including code examples, testing tools, and detailed checklists, see `references/ACCESSIBLE_DOCUMENTATION.md`.
 
 ### Version Documentation
 
