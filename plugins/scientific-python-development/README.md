@@ -6,7 +6,7 @@ Comprehensive agents and skills for modern Scientific Python development followi
 
 This plugin provides expert guidance for scientific Python development, emphasizing reproducibility, modern tooling, and community standards from the [Scientific Python Development Guide](https://learn.scientific-python.org/development/).
 
-**Version:** 0.2.0
+**Version:** 0.1.0
 
 **Contents:**
 - 2 Agents: Scientific Python Expert, Scientific Docs Architect
